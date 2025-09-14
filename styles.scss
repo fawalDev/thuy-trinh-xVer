@@ -1,0 +1,285 @@
+// ==========================
+// Variables
+// ==========================
+$bg-1: #FDF4F3;
+$bg-2: #F2DADF;
+$bg-3: #F7D3E4;
+$bg-4: #F1B3CD;
+$accent: #F0C2A8;
+$text: #3b2b2b;
+$muted: rgba(59,43,43,0.6);
+$white: #ffffff;
+
+// ==========================
+// Breakpoints (mobile-first)
+// ==========================
+$break-tablet: 521px;
+$break-desktop: 981px;
+
+@mixin tablet {
+  @media (min-width: #{$break-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$break-desktop}) {
+    @content;
+  }
+}
+
+// ==========================
+// Global reset + base
+// ==========================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+html, body {
+  background: linear-gradient(180deg, $bg-1 0%, $bg-4 100%);
+  color: $text;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  line-height: 1.5;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem .25rem;
+
+  @include tablet {
+    padding: 1.5rem;
+  }
+}
+
+// ==========================
+// Header
+// ==========================
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 30;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.4));
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    text-decoration: none;
+    color: $text;
+
+    span { font-weight: 700; letter-spacing: .3px; }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    gap: .6rem;
+
+    a {
+      color: $muted;
+      text-decoration: none;
+      font-weight: 600;
+      padding: .5rem .7rem;
+      border-radius: 8px;
+      transition: all .18s ease;
+
+      &:hover {
+        background: rgba(255,255,255,0.6);
+        color: $text;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// ==========================
+// Hero
+// ==========================
+.hero {
+  padding: 5rem 0;
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr; // mobile: 1 cột
+    gap: 1.2rem;
+
+    @include desktop {
+      grid-template-columns: 1fr 420px;
+    }
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.9);
+    border-radius: 14px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 20px rgba(17,12,12,0.06);
+
+    .badge {
+      display: inline-block;
+      padding: .35rem .6rem;
+      background: $bg-3;
+      color: $text;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: .6rem;
+
+      @include tablet { font-size: 1.9rem; }
+      @include desktop { font-size: 2.1rem; }
+    }
+
+    .accent { color: $bg-4; }
+    .lead { color: $muted; margin-bottom: 1rem; }
+    .cta-row { display: flex; gap: .7rem; flex-wrap: wrap; }
+  }
+
+  .illustration {
+    display: flex;
+    justify-content: center;
+
+    .svg-hero {
+      width: 100%;
+      max-width: 280px;
+
+      @include tablet { max-width: 340px; }
+      @include desktop { max-width: 380px; }
+    }
+  }
+}
+
+// ==========================
+// Sections
+// ==========================
+.section { padding: 2rem 0; }
+
+.card {
+  background: rgba(255,255,255,0.88);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 6px 18px rgba(17,12,12,0.04);
+}
+
+.story .card h2 { margin-bottom: .6rem; }
+
+.team {
+  h2 { margin-bottom: .2rem; }
+  .muted { color: $muted; margin-bottom: 1rem; text-align: center; margin-top: 1rem; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr; // mobile
+    gap: 1rem;
+
+    @include tablet { grid-template-columns: repeat(2, 1fr); }
+    @include desktop { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .member {
+    text-align: center;
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto .6rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+      font-weight: 700;
+    }
+
+    h4 { margin: 0; font-size: 1rem; }
+    .small { font-size: .85rem; color: $muted; }
+  }
+
+  .quote {
+    margin-top: 1rem;
+    font-style: italic;
+    border-left: 4px solid rgba(241,179,205,0.6);
+    padding-left: 1rem;
+  }
+}
+
+.thanks {
+    margin-top: 4rem;
+  .subtle { color: $muted; }
+  .note {
+    padding: .8rem;
+    border-radius: 10px;
+    background: #fff3f4;
+    color: $text;
+
+    &.hidden { display: none; }
+  }
+}
+
+// ==========================
+// Buttons
+// ==========================
+.btn {
+  display: inline-block;
+  padding: .6rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+
+  &.primary {
+    background: linear-gradient(90deg, $bg-4, $bg-3);
+    color: $text;
+    box-shadow: 0 6px 18px rgba(241,179,205,0.18);
+  }
+
+  &.ghost {
+    background: transparent;
+    color: $muted;
+    border: 1px solid rgba(59,43,43,0.06);
+  }
+}
+
+// ==========================
+// Footer
+// ==========================
+.site-footer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  color: $muted;
+
+  a { color: $muted; text-decoration: none; }
+}
