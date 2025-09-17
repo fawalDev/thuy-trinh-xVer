@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
+
+
 // ==========================
 // Variables
 // ==========================
@@ -7,7 +10,7 @@ $bg-3: #F7D3E4;
 $bg-4: #F1B3CD;
 $accent: #F0C2A8;
 $text: #3b2b2b;
-$muted: rgba(59,43,43,0.6);
+$muted: rgba(59, 43, 43, 0.6);
 $white: #ffffff;
 
 // ==========================
@@ -38,32 +41,60 @@ $break-desktop: 981px;
 }
 
 :root {
-  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: 'Quicksand', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-html, body {
+html,
+body {
   background: linear-gradient(180deg, $bg-1 0%, $bg-4 100%);
   color: $text;
   -webkit-font-smoothing: antialiased;
+  font-size: 20px;
+
+  @include tablet() {
+    font-size: 22px;
+  }
 }
 
 body {
   line-height: 1.5;
 }
 
-img{
-    display: block;
-    max-width: 100%;
-    height: auto;
+
+
+p {
+  padding: 0 0 1rem 0;
+  /* trên, phải, dưới, trái */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1rem .25rem;
+  padding: 1rem 0;
+}
 
-  @include tablet {
-    padding: 1.5rem;
+.sub-container {
+  padding: 0 1rem;
+
+  @include tablet() {
+    // padding: 0;
+  }
+}
+
+.image-container {
+  height: 80vh;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -76,8 +107,8 @@ img{
   width: 100%;
   z-index: 30;
   backdrop-filter: blur(6px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.4));
-  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
   .header-inner {
     display: flex;
@@ -93,7 +124,10 @@ img{
     text-decoration: none;
     color: $text;
 
-    span { font-weight: 700; letter-spacing: .3px; }
+    span {
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
   }
 
   .nav {
@@ -101,6 +135,7 @@ img{
     align-items: center;
     height: 3rem;
     gap: .6rem;
+    text-align: center;
 
     a {
       color: $muted;
@@ -111,7 +146,7 @@ img{
       transition: all .18s ease;
 
       &:hover {
-        background: rgba(255,255,255,0.6);
+        background: rgba(255, 255, 255, 0.6);
         color: $text;
         transform: translateY(-2px);
       }
@@ -123,7 +158,7 @@ img{
 // Hero
 // ==========================
 .hero {
-  padding: 5rem 0;
+  padding: 5rem 0 1rem 0;
 
   .hero-grid {
     display: grid;
@@ -136,10 +171,10 @@ img{
   }
 
   .hero-card {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 14px;
     padding: 1.2rem;
-    box-shadow: 0 4px 20px rgba(17,12,12,0.06);
+    box-shadow: 0 4px 20px rgba(17, 12, 12, 0.06);
 
     .badge {
       display: inline-block;
@@ -156,13 +191,29 @@ img{
       font-size: 1.6rem;
       margin-bottom: .6rem;
 
-      @include tablet { font-size: 1.9rem; }
-      @include desktop { font-size: 2.1rem; }
+      @include tablet {
+        font-size: 1.9rem;
+      }
+
+      @include desktop {
+        font-size: 2.1rem;
+      }
     }
 
-    .accent { color: $bg-4; }
-    .lead { color: $muted; margin-bottom: 1rem; }
-    .cta-row { display: flex; gap: .7rem; flex-wrap: wrap; }
+    .accent {
+      color: $bg-4;
+    }
+
+    .lead {
+      color: $muted;
+      margin-bottom: 1rem;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
   }
 
   .illustration {
@@ -173,8 +224,13 @@ img{
       width: 100%;
       max-width: 280px;
 
-      @include tablet { max-width: 340px; }
-      @include desktop { max-width: 380px; }
+      @include tablet {
+        max-width: 340px;
+      }
+
+      @include desktop {
+        max-width: 380px;
+      }
     }
   }
 }
@@ -182,28 +238,85 @@ img{
 // ==========================
 // Sections
 // ==========================
-.section { padding: 2rem 0; }
+section {
+  padding: 2.5rem 0 0;
 
-.card {
-  background: rgba(255,255,255,0.88);
-  border-radius: 14px;
-  padding: 1rem 1.2rem;
-  box-shadow: 0 6px 18px rgba(17,12,12,0.04);
+  @include tablet() {
+    padding: 3rem 0 0 0;
+  }
 }
 
-.story .card h2 { margin-bottom: .6rem; }
+.card {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 1rem;
+  padding: 3rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(17, 12, 12, 0.04);
+  border-left: 6px solid $accent;
+
+  @include tablet() {
+    border-left: 10px solid $accent;
+  }
+
+  // border-radius: ;
+}
+
+.story .card h2 {
+  margin-bottom: .6rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.sticky {
+  position: sticky;
+  z-index: 0;
+}
+
+.top-0 {
+  top: 0
+}
+
+.sticky-overlay {
+  position: relative;
+  padding: 2rem 0;
+  bottom: -2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4));
+  z-index: 10;
+  border-radius: 1rem;
+}
+
+.bg-overlay {
+  background: linear-gradient($accent, $bg-3);
+}
 
 .team {
-  h2 { margin-bottom: .2rem; }
-  .muted { color: $muted; margin-bottom: 1rem; text-align: center; margin-top: 1rem; }
+  h2 {
+    margin-bottom: .2rem;
+  }
+
+  .muted {
+    color: $muted;
+    // margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
 
   .team-grid {
     display: grid;
     grid-template-columns: 1fr; // mobile
     gap: 1rem;
 
-    @include tablet { grid-template-columns: repeat(2, 1fr); }
-    @include desktop { grid-template-columns: repeat(4, 1fr); }
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .member {
@@ -221,28 +334,41 @@ img{
       font-weight: 700;
     }
 
-    h4 { margin: 0; font-size: 1rem; }
-    .small { font-size: .85rem; color: $muted; }
+    h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .small {
+      font-size: .85rem;
+      color: $muted;
+    }
   }
 
   .quote {
-    margin-top: 1rem;
-    font-style: italic;
-    border-left: 4px solid rgba(241,179,205,0.6);
+    margin: 1rem 0 2rem;
+    border-left: 4px solid rgba(241, 179, 205, 0.6);
     padding-left: 1rem;
   }
 }
 
+blockquote {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
 .thanks {
-    margin-top: 4rem;
-  .subtle { color: $muted; }
+  z-index: 20;
+
   .note {
     padding: .8rem;
     border-radius: 10px;
     background: #fff3f4;
     color: $text;
 
-    &.hidden { display: none; }
+    &.hidden {
+      display: none;
+    }
   }
 }
 
@@ -262,13 +388,13 @@ img{
   &.primary {
     background: linear-gradient(90deg, $bg-4, $bg-3);
     color: $text;
-    box-shadow: 0 6px 18px rgba(241,179,205,0.18);
+    box-shadow: 0 6px 18px rgba(241, 179, 205, 0.18);
   }
 
   &.ghost {
     background: transparent;
     color: $muted;
-    border: 1px solid rgba(59,43,43,0.06);
+    border: 1px solid rgba(59, 43, 43, 0.06);
   }
 }
 
@@ -276,10 +402,15 @@ img{
 // Footer
 // ==========================
 .site-footer {
-  margin-top: 2rem;
+  background-color: $accent;
   padding: 1rem 0;
   text-align: center;
-  color: $muted;
+  // color: $muted;
 
-  a { color: $muted; text-decoration: none; }
+  a {
+    color: $muted;
+    text-decoration: none;
+  }
+
+
 }
