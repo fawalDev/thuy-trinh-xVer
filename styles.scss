@@ -16,7 +16,7 @@ $white: #ffffff;
 // ==========================
 // Breakpoints (mobile-first)
 // ==========================
-$break-tablet: 521px;
+$break-tablet: 768px;
 $break-desktop: 981px;
 
 @mixin tablet {
@@ -90,11 +90,60 @@ img {
 .image-container {
   height: 100vh;
   overflow: hidden;
+  position: relative;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(90%) invert(10%);
+  }
+
+  .img-text {
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+    font-size: 40px;
+    text-align: right;
+    font-weight: bolder;
+    font-style: italic;
+    visibility: hidden;
+
+    &.clip-text {
+      background: linear-gradient(90deg, #3b2b2b, #174eb3, #f30000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @include tablet() {
+      visibility: visible;
+    }
+  }
+}
+
+// ==========================
+// Buttons
+// ==========================
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+
+  &.primary {
+    background: linear-gradient(90deg, $bg-4, $bg-3);
+    color: $text;
+    box-shadow: 0 6px 18px rgba(241, 179, 205, 0.18);
+  }
+
+  &.ghost {
+    background: transparent;
+    color: $muted;
+    border: 1px solid rgba(59, 43, 43, 0.06);
   }
 }
 
@@ -239,14 +288,14 @@ img {
 // Sections
 // ==========================
 section {
-  padding: 2.5rem 0 0;
+  padding: 0 0 2.5rem;
 
   @include tablet() {
-    padding: 3rem 0 0 0;
+    padding: 0 0 3rem;
   }
 
   @include desktop() {
-    padding: 5rem 0 0 0;
+    padding: 0 0 5rem;
   }
 }
 
@@ -264,8 +313,23 @@ section {
   // border-radius: ;
 }
 
-.story .card h2 {
-  margin-bottom: .6rem;
+.story {
+
+  .card h2 {
+    margin-bottom: 1rem;
+    border-bottom-right-radius: 2rem;
+    text-shadow: .15rem .15rem 8px #3b2b2b; 
+    background: linear-gradient(90deg, $bg-1, $bg-4);
+    display: inline-block;
+    padding: .25rem 1rem .25rem 0;
+    font-style: italic;
+  }
+
+  article{
+    border-top-left-radius: 90%;
+    border-bottom-right-radius: 20%;
+  }
+  
 }
 
 .relative {
@@ -295,6 +359,14 @@ section {
   border-top-left-radius: 1rem;
   border-top-right-radius: 16em;
 
+  // boxsha
+  @include tablet() {
+    padding: 7rem 2rem;
+  }
+
+  @include desktop() {
+    padding: 7rem 0 10rem 5rem;
+  }
 
 
   article {
@@ -314,14 +386,9 @@ section {
   }
 
   @include desktop() {
-    padding: 7rem 0 2rem 3rem;
     border-top-right-radius: 100%;
     border-top-left-radius: 10rem;
   }
-}
-
-.bg-overlay {
-  background: linear-gradient($accent, $bg-3);
 }
 
 .team {
@@ -332,6 +399,7 @@ section {
   &>article {
     border-top-right-radius: 5rem;
     border-top-left-radius: 50rem;
+
     @include tablet() {
       padding-top: 5rem;
       border-top-right-radius: 200%;
@@ -342,46 +410,6 @@ section {
       padding-top: 5rem;
       border-top-right-radius: 200%;
       border-top-left-radius: 100%;
-    }
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: 1fr; // mobile
-    gap: 1rem;
-
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include desktop {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .member {
-    text-align: center;
-
-    .avatar {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto .6rem;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: $white;
-      font-weight: 700;
-    }
-
-    h4 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .small {
-      font-size: .85rem;
-      color: $muted;
     }
   }
 
@@ -408,45 +436,84 @@ blockquote {
 }
 
 .thanks {
-  z-index: 20;
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(45deg, $accent, $bg-4);
+  text-align: right;
 
-  .note {
-    padding: .8rem;
-    border-radius: 10px;
-    background: #fff3f4;
-    color: $text;
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -5rem;
+    left: 0;
+    width: 100%;
+    height: 15rem;
+    background: linear-gradient(150deg, $accent, $bg-4);
+    border-top-left-radius: 20%;
 
-    &.hidden {
-      display: none;
+    @include tablet() {
+      top: -11rem;
+      border-top-right-radius: 70%;
+      border-top-left-radius: 100%;
+    }
+
+    @include desktop() {
+      top: -15rem;
+      border-top-right-radius: 100%;
+      border-top-left-radius: 50%;
     }
   }
+
 }
 
-// ==========================
-// Buttons
-// ==========================
-.btn {
-  display: inline-block;
-  padding: .6rem 1rem;
-  border-radius: 10px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
 
-  &.primary {
-    background: linear-gradient(90deg, $bg-4, $bg-3);
-    color: $text;
-    box-shadow: 0 6px 18px rgba(241, 179, 205, 0.18);
+// ==========================
+// Memorable moment
+// ==========================
+#memorable-moment {
+  background-color: $accent;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 960px;
+
+  .carousel {
+    display: flex;
+    transition: transform .3s ease-in-out;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%
+    }
   }
 
-  &.ghost {
-    background: transparent;
-    color: $muted;
-    border: 1px solid rgba(59, 43, 43, 0.06);
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .left {
+    left: 10px;
+  }
+
+  .right {
+    right: 10px;
   }
 }
+
 
 // ==========================
 // Footer
@@ -461,6 +528,4 @@ blockquote {
     color: $muted;
     text-decoration: none;
   }
-
-
 }

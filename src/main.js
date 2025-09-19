@@ -11,32 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   };
+})
 
-  revealItems.forEach(el => {
-    el.style.transition = 'all 600ms cubic-bezier(.2,.9,.2,1)';
-    el.style.transform = 'translateY(12px)';
-    el.style.opacity = '0';
-  });
-  onScroll();
-  window.addEventListener('scroll', onScroll);
+// Navigation
+function updateCarousel() {
+    carousel.style.transform = `translateX(${-index * 600}px)`;
+}
 
-  // congrats button
-  const congratsBtn = document.getElementById('congratsBtn');
-  const note = document.getElementById('note');
-  congratsBtn.addEventListener('click', () => {
-    note.classList.remove('hidden');
-    note.textContent = 'Cảm ơn bạn đã gửi lời chúc! 💖';
-    congratsBtn.disabled = true;
-    congratsBtn.textContent = 'Đã gửi ✓';
-    setTimeout(() => {
-      congratsBtn.style.opacity = '0.98';
-    }, 200);
-  });
+document.querySelector('.arrow.left').addEventListener("click", () => {
+    index = (index > 0) ? index - 1 : 0;
+    updateCarousel();
+});
 
-  // scroll to top
-  document.getElementById('topBtn').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+document.querySelector('.arrow.right').addEventListener("click", () => {
+    index = (index < carousel.children.length - 1) ? index + 1 : carousel.children.length - 1;
+    updateCarousel();
 });
 
